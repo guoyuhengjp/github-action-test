@@ -26,8 +26,8 @@ jobs:
           php artisan key:generate
       - name: create db
         run : |
-          sudo /etc/init.d/mysql start # ここを追加
-          mysql -uroot -proot
+          sudo /etc/init.d/mysql start
+          mysql -uroot -proot -e "CREATE DATABASE homestead /*\!40100 DEFAULT CHARACTER SET utf8mb4 */;"
       - name: Run Migration
         run: |
           php artisan migrate -v

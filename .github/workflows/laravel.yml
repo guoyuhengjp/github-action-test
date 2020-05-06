@@ -42,11 +42,9 @@ jobs:
           coverage: xdebug #optional
       - name: Install Composer dependencies
         run: |
-          cd ./laravel/matool/
           composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
       - name: Prepare the application
         run: |
-          cd ./laravel/matool/
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
       - name: create db
@@ -54,14 +52,12 @@ jobs:
           mysql -uroot -proot -e "CREATE DATABASE homestead /*\!40100 DEFAULT CHARACTER SET utf8mb4 */;"
       - name: Run Migration
         run: |
-          cd ./laravel/matool/
           php artisan migrate -v
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
       - name: Test with phpunit
         run: |
-          cd ./laravel/matool/
           vendor/bin/phpunit --coverage-text
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}

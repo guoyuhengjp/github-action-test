@@ -49,7 +49,7 @@ jobs:
           php artisan key:generate
       - name: create db
         run : |
-          mysql -uroot -proot -e "CREATE DATABASE homestead /*\!40100 DEFAULT CHARACTER SET utf8mb4 */;"
+          mysql -uroot -proot
       - name: Run Migration
         run: |
           php artisan migrate -v

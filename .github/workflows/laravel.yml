@@ -37,7 +37,7 @@ jobs:
       - name: create db
         run : |
           sudo /etc/init.d/mysql start
-          service neo4j start
+          sudo service neo4j start
           mysql -uroot -proot -e "CREATE DATABASE homestead /*\!40100 DEFAULT CHARACTER SET utf8mb4 */;"
       - name: Run Migration
         run: |
